@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.zenith</groupId>
+    <artifactId>zenith-parent</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <name>${project.artifactId}-${project.version}</name>
+    <packaging>pom</packaging>
+    <description>此包为zenith父工程</description>
+    <url>https://github.com/nemax</url>
+
+    <modules>
+        <!--打包工程-->
+        <module>zenith-all</module>
+
+        <!--文件相关操作-->
+        <module>zenith-file</module>
+    </modules>
+
+    <properties>
+        <!--encoding-->
+        <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
+
+        <!-- compile -->
+        <compile.version>8</compile.version>
+
+        <!-- third party components -->
+        <junit.version>4.12</junit.version>
+        <google.guava.version>28.0-jre</google.guava.version>
+        <looly.hutool.version>4.6.3</looly.hutool.version>
+    </properties>
+
+    <dependencies>
+        <!-- 全局单元测试 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 第三方组件 Google Guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${google.guava.version}</version>
+        </dependency>
+
+        <!-- 第三方组件 Hutool -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${looly.hutool.version}</version>
+        </dependency>
+
+    </dependencies>
+
+<!--    <issueManagement>-->
+<!--        <system>Github Issue</system>-->
+<!--        <url>https://github.com/looly/hutool/issues</url>-->
+<!--    </issueManagement>-->
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>qijunmi</name>
+            <email>qijunmi@gmail.com</email>
+        </developer>
+    </developers>
+
+<!--    <scm>-->
+<!--        <connection>scm:git@github.com:looly/hutool.git</connection>-->
+<!--        <developerConnection>scm:git@github.com:looly/hutool.git</developerConnection>-->
+<!--        <url>git@github.com:looly/hutool.git</url>-->
+<!--    </scm>-->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${compile.version}</source>
+                    <target>${compile.version}</target>
+                </configuration>
+            </plugin>
+            <!-- Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <additionalJOptions>
+                                <!--关闭过于严格的doclint-->
+                                <additionalJOption>-Xdoclint:none</additionalJOption>
+                            </additionalJOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>rdc-releases</id>
+            <url>https://repo.rdc.aliyun.com/repository/102970-release-77dXTU/</url>
+        </repository>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <url>https://repo.rdc.aliyun.com/repository/102970-snapshot-r2Rimp/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>release</id>-->
+<!--            <distributionManagement>-->
+<!--                <snapshotRepository>-->
+<!--                    <id>oss</id>-->
+<!--                    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>-->
+<!--                </snapshotRepository>-->
+<!--                <repository>-->
+<!--                    <id>oss</id>-->
+<!--                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+<!--                </repository>-->
+<!--            </distributionManagement>-->
+<!--            <build>-->
+<!--                <plugins>-->
+<!--                    &lt;!&ndash; Source &ndash;&gt;-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-source-plugin</artifactId>-->
+<!--                        <version>3.1.0</version>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>oss</id>-->
+<!--                                <phase>package</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>jar-no-fork</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.codehaus.mojo</groupId>-->
+<!--                        <artifactId>cobertura-maven-plugin</artifactId>-->
+<!--                        <version>2.7</version>-->
+<!--                        <configuration>-->
+<!--                            <formats>-->
+<!--                                <format>html</format>-->
+<!--                                <format>xml</format>-->
+<!--                            </formats>-->
+<!--                            <check />-->
+<!--                        </configuration>-->
+<!--                    </plugin>-->
+<!--                    &lt;!&ndash; Gpg Signature &ndash;&gt;-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-gpg-plugin</artifactId>-->
+<!--                        <version>1.6</version>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>oss</id>-->
+<!--                                <phase>verify</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>sign</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.sonatype.plugins</groupId>-->
+<!--                        <artifactId>nexus-staging-maven-plugin</artifactId>-->
+<!--                        <version>1.6.8</version>-->
+<!--                        <extensions>true</extensions>-->
+<!--                        <configuration>-->
+<!--                            <serverId>oss</serverId>-->
+<!--                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>-->
+<!--                            <autoReleaseAfterClose>true</autoReleaseAfterClose>-->
+<!--                        </configuration>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
+<!--            </build>-->
+<!--        </profile>-->
+<!--    </profiles>-->
+
+</project>
