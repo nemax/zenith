@@ -18,7 +18,7 @@
         <dependency>
             <groupId>cn.zenith</groupId>
             <artifactId>zenith-file</artifactId>
-            <version>0.1-SNAPSHOTS</version>
+            <version>0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
