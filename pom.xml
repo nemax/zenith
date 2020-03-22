@@ -4,6 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <groupId>cn.zenith</groupId>
     <artifactId>zenith-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
@@ -34,32 +41,49 @@
         <looly.hutool.version>4.6.3</looly.hutool.version>
     </properties>
 
-    <dependencies>
-        <!-- 全局单元测试 -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.zenith</groupId>
+                <artifactId>zenith-file</artifactId>
+                <version>0.1-SNAPSHOT</version>
+            </dependency>
 
+            <!-- 第三方组件 Google Guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google.guava.version}</version>
+            </dependency>
+
+            <!-- 第三方组件 Hutool -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${looly.hutool.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 固定引入的第三方依赖 -->
+    <dependencies>
         <!-- 第三方组件 Google Guava -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>${google.guava.version}</version>
         </dependency>
 
         <!-- 第三方组件 Hutool -->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>${looly.hutool.version}</version>
         </dependency>
 
     </dependencies>
 
-<!--    <issueManagement>-->
+
+    <!--    <issueManagement>-->
 <!--        <system>Github Issue</system>-->
 <!--        <url>https://github.com/looly/hutool/issues</url>-->
 <!--    </issueManagement>-->
